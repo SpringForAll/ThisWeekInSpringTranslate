@@ -1,0 +1,19 @@
+officlialblog/ipse
+officlialblog/.classpath
+officlialblog/.project
+officlialblog/.settings/
+
+# Intellij
+officlialblog/.idea/
+officlialblog/*.iml
+officlialblog/*.iws
+
+# Mac
+officlialblog/.DS_Store
+
+# Maven
+officlialblog/log/
+officlialblog/target/
+
+# Other
+officlialblog/out
