@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * Created by maskwang on 2017/9/14 0014.
  */
 @RestController
-public class getTranslate {
+public class GetTranslate {
     @RequestMapping("/getTranslate")
     public String getTranslate() {
         MyArrayList hrefList = new MyArrayList();
