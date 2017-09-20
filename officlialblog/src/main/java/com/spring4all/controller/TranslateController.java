@@ -24,7 +24,7 @@ public class TranslateController {
 
     private static final String SPRING_WEEK_BLOG_URL = "https://spring.io/blog";
 
-    private static final String MATCH_RULE = "^This Week in Spring.*";
+    private static final String MATCH_RULE = "This Week in Spring";
 
     @RequestMapping("/translate")
     public String translate() {
@@ -41,7 +41,15 @@ public class TranslateController {
                 return "打开Spring周报博客失败";
             }
 
-            String targetLink = doc.select("h2.blog--title").select("a").first().attr("href");
+            String targetLink = null;
+
+            Elements hrefs = doc.select("h2.blog--title").select("a");
+
+            for (Element href : hrefs) {
+                if (href.text().startsWith(MATCH_RULE)) {
+                    targetLink = href.attr("href");
+                }
+            }
 
             if (!StringUtils.hasText(targetLink)) {
                 return "解析最新的文章标题链接地址为空，页面结构可能已经变化！";
