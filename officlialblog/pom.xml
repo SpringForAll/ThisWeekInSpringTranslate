@@ -59,32 +59,33 @@
             <version>1.10.2</version>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>com.lsj</groupId>
             <artifactId>trans</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/resources/lib/util_trans.jar</systemPath>
-        </dependency>-->
+            <!--这个么？不是，这是后来加上的，是我左边引入的，手动-->
+           <!--这个有问题的 这个是引入本地jar包的不是在maven私服的
+           如果你非得要打包本地maven仓库的话 我发你的你可以用下 -->
+
+        </dependency>
 
 
     </dependencies>
   <build>
       <plugins>
           <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-assembly-plugin</artifactId>
-              <version>2.5.5</version>
-              <configuration>
-                  <archive>
-                      <manifest>
-                          <mainClass>com.xxg.Main</mainClass>
-                      </manifest>
-                  </archive>
-                  <descriptorRefs>
-                      <descriptorRef>jar-with-dependencies</descriptorRef>
-                  </descriptorRefs>
-              </configuration>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+              <version>1.5.3.RELEASE</version>
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>repackage</goal>
+                      </goals>
+                  </execution>
+              </executions>
           </plugin>
 
       </plugins>
