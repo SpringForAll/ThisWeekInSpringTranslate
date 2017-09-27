@@ -48,6 +48,7 @@ public class TranslateController {
             for (Element href : hrefs) {
                 if (href.text().startsWith(MATCH_RULE)) {
                     targetLink = href.attr("href");
+                    break;
                 }
             }
 
