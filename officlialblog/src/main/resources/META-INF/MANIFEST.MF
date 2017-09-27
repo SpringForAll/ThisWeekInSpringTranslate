@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Class-Path: spring-boot-1.5.3.RELEASE.jar commons-codec-1.9.jar jul-to
+ -slf4j-1.7.25.jar spring-boot-starter-logging-1.5.3.RELEASE.jar httpm
+ ime-4.5.2.jar commons-collections-3.2.1.jar spring-webmvc-4.3.8.RELEA
+ SE.jar ezmorph-1.0.6.jar httpclient-win-4.5.2.jar jackson-annotations
+ -2.8.0.jar spring-boot-starter-tomcat-1.5.3.RELEASE.jar spring-core-4
+ .3.8.RELEASE.jar logback-core-1.1.11.jar spring-beans-4.3.8.RELEASE.j
+ ar jackson-core-2.8.8.jar slf4j-api-1.7.25.jar json-lib-2.4-jdk15.jar
+  snakeyaml-1.17.jar fluent-hc-4.5.2.jar spring-aop-4.3.8.RELEASE.jar 
+ commons-logging-1.1.1.jar log4j-over-slf4j-1.7.25.jar spring-boot-aut
+ oconfigure-1.5.3.RELEASE.jar tomcat-embed-el-8.5.14.jar jcl-over-slf4
+ j-1.7.25.jar spring-boot-starter-1.5.3.RELEASE.jar spring-boot-starte
+ r-web-1.5.3.RELEASE.jar commons-lang-2.5.jar commons-logging-1.2.jar 
+ spring-boot-devtools-1.5.3.RELEASE.jar spring-web-4.3.8.RELEASE.jar h
+ ttpclient-4.5.2.jar jna-platform-4.1.0.jar jna-4.1.0.jar jboss-loggin
+ g-3.3.1.Final.jar spring-context-4.3.8.RELEASE.jar classmate-1.3.3.ja
+ r validation-api-1.1.0.Final.jar jackson-databind-2.8.8.jar spring-ex
+ pression-4.3.8.RELEASE.jar httpclient-cache-4.5.2.jar util_trans.jar 
+ tomcat-embed-core-8.5.14.jar hibernate-validator-5.3.5.Final.jar tomc
+ at-embed-websocket-8.5.14.jar commons-beanutils-1.8.0.jar jsoup-1.10.
+ 2.jar logback-classic-1.1.11.jar httpcore-4.4.4.jar
+Main-Class: com.spring4all.App
+
