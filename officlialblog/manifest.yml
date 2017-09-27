@@ -1,0 +1,9 @@
+pplications:
+
+    - name: translate_this_spring_week
+
+        instances: 1
+
+            host: ttsw
+
+                path: target/officialblog-1.0-SNAPSHOT.jar
