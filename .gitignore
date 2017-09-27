@@ -12,8 +12,8 @@ officlialblog/*.iws
 officlialblog/.DS_Store
 
 # Maven
-officlialblog/log/
-officlialblog/target/
 
+officlialblog/log
+officlialblog/target
 # Other
 officlialblog/out
