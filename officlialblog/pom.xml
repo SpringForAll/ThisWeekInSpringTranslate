@@ -59,8 +59,13 @@
             <version>1.10.2</version>
         </dependency>
 
-
-
+        <!--<dependency>
+            <groupId>com.lsj</groupId>
+            <artifactId>trans</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/resources/lib/util_trans.jar</systemPath>
+        </dependency>-->
 
 
     </dependencies>
