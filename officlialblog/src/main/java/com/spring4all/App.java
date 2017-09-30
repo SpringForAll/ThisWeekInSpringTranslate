@@ -10,13 +10,13 @@ import java.util.HashMap;
  * 启动类
  *
  * @author maskwang
- *         2017年6月23日
+ * 2017年6月23日
  */
 @SpringBootApplication
 public class App {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class,args);
+        SpringApplication.run(App.class, args);
     }
 }
