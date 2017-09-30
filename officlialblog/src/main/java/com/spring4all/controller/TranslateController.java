@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,11 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TranslateController {
 
-    private static final String SPRING_URL = "https://spring.io";
+    @Value("${springio.website.index}")
+    private String SPRING_URL;
 
-    private static final String SPRING_WEEK_BLOG_URL = "https://spring.io/blog";
+    @Value("${springio.website.blog}")
+    private String SPRING_WEEK_BLOG_URL;
 
-    private static final String MATCH_RULE = "This Week in Spring";
+    @Value("${springio.weekly}")
+    private String MATCH_RULE;
 
     @GetMapping(value = "/translate")
     public String translate() {

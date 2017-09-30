@@ -1,5 +1,6 @@
 package com.spring4all;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -16,12 +17,6 @@ public class App {
 
 
     public static void main(String[] args) {
-
-        HashMap props = new HashMap();
-        props.put("server.port",9999);
-        new SpringApplicationBuilder()
-                .sources(App.class)
-                .properties(props)
-                .run(args);
+        SpringApplication.run(App.class,args);
     }
 }
