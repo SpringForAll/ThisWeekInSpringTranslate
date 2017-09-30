@@ -2,3 +2,9 @@
 spring:
   profiles:
     active: dev
+
+springio:
+  website:
+   index: https://spring.io
+   blog: ${springio.website.index}/blog
+  weekly: This Week in Spring
