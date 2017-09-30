@@ -1,10 +1,7 @@
 package com.spring4all;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.context.annotation.Bean;
 
 import java.util.HashMap;
 

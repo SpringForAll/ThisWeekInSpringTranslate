@@ -1,15 +1,16 @@
 package com.spring4all.controller;
 
-import com.lsj.trans.LANG;
-import com.lsj.trans.factory.TFactory;
-import com.lsj.trans.factory.TranslatorFactory;
+import com.spring4all.enums.LanguageEnum;
+import com.spring4all.enums.TranslatorNameEnum;
+import com.spring4all.factory.AbstractTranslatorFactory;
+import com.spring4all.factory.TranslatorFactory;
 import com.spring4all.util.MyArrayList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by maskwang on 2017/9/14 0014.
  */
 @RestController
-//TODO: 将解析截止和规则放到配置文件中
 public class TranslateController {
 
     private static final String SPRING_URL = "https://spring.io";
@@ -26,14 +26,14 @@ public class TranslateController {
 
     private static final String MATCH_RULE = "This Week in Spring";
 
-    @RequestMapping("/translate")
+    @GetMapping(value = "/translate")
     public String translate() {
 
         MyArrayList hrefList = new MyArrayList();
 
         try {
 
-            TFactory factory = new TranslatorFactory();//完成翻译工厂类
+            AbstractTranslatorFactory factory = new TranslatorFactory();//完成翻译工厂类
 
             Document doc = Jsoup.connect(SPRING_WEEK_BLOG_URL).get();
 
@@ -62,7 +62,7 @@ public class TranslateController {
             Elements allLiHref = latestBlog.select("div.blog--post").select("ul").select("li");
             //处理p标签
             for (Element e : allPHref) {
-                String traslateedSentence = factory.get("google").trans(LANG.EN, LANG.ZH, e.text());
+                String traslateedSentence = factory.getTranslator(TranslatorNameEnum.GOOGLE).trans(LanguageEnum.EN, LanguageEnum.ZH, e.text());
                 String traslateedContent = new StringBuilder()
                         .append(traslateedSentence)
                         .append("</br></br>")
@@ -83,7 +83,7 @@ public class TranslateController {
             for (int i = 0; i < allLiHref.size(); i++) {
                 hrefList.add(i + 1 + ":&nbsp&nbsp");
                 //把翻译结果添加List中去
-                hrefList.add(factory.get("google").trans(LANG.EN, LANG.ZH, allLiHref.get(i).text()) + "</br></br>");
+                hrefList.add(factory.getTranslator(TranslatorNameEnum.GOOGLE).trans(LanguageEnum.EN, LanguageEnum.ZH, allLiHref.get(i).text()) + "</br></br>");
                 for (Element el : allLiHref.get(i).select("a")) {
                     hrefList.add(el.attr("href") + "</br></br>");
                 }
