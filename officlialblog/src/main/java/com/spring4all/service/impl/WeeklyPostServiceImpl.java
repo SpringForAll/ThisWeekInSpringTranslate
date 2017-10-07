@@ -5,7 +5,6 @@ import com.spring4all.enums.TranslatorNameEnum;
 import com.spring4all.factory.AbstractTranslatorFactory;
 import com.spring4all.factory.TranslatorFactory;
 import com.spring4all.service.WeeklyPostService;
-import com.spring4all.util.JsoupUtil;
 import com.spring4all.util.MyArrayList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
