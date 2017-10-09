@@ -13,7 +13,8 @@ officlialblog/.DS_Store
 
 # Maven
 
-officlialblog/log
 officlialblog/target
 # Other
 officlialblog/out
+officlialblog/*.iml
+officlialblog/*.log
