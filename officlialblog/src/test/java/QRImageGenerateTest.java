@@ -20,8 +20,9 @@ public class QRImageGenerateTest {
                         .to(ImageType.PNG)
                         .stream();
 
+
         try {
-            OutputStream out = new FileOutputStream("/tmp/qr-code.png");
+            OutputStream out = new FileOutputStream("/picture/qr-code.png");
             bout.writeTo(out);
             out.flush();
             out.close();

@@ -51,6 +51,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -89,29 +95,51 @@
             <artifactId>junit</artifactId>
         </dependency>
         <!--二维码图片文件生成库-->
+        <!-- https://mvnrepository.com/artifact/net.glxn.qrgen/javase -->
         <dependency>
-            <groupId>com.github.kenglxn.qrgen</groupId>
+            <groupId>net.glxn.qrgen</groupId>
             <artifactId>javase</artifactId>
-            <version>2.3.0</version>
+            <version>2.0</version>
         </dependency>
+
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+    <!--<repository>-->
+    <!--<id>jitpack.io</id>-->
+    <!--<url>https://jitpack.io</url>-->
+    <!--</repository>-->
+    <!--</repositories>-->
 
     <build>
         <plugins>
             <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.spring4all.App</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

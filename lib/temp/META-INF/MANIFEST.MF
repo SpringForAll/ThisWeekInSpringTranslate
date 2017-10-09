@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Class-Path: lib/commons-codec-1.9.jar lib/commons-logging-1.2.jar lib/
+ fluent-hc-4.5.2.jar lib/httpclient-4.5.2.jar lib/httpclient-cache-4.5
+ .2.jar lib/httpclient-win-4.5.2.jar lib/httpmime-4.5.2.jar lib/jna-4.
+ 1.0.jar lib/jna-platform-4.1.0.jar lib/httpcore-4.4.4.jar lib/commons
+ -fileupload-1.3.2.jar lib/servlet-api.jar lib/commons-io-2.5.jar
+Main-Class: com.lsj.tad.server.App
+
