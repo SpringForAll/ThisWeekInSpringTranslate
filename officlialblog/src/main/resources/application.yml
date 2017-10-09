@@ -1,2 +1,23 @@
-server:
-  port: 9999
+
+spring:
+  profiles:
+    active: dev
+  mail:
+    default-encoding: utf-8
+    host: smtp.163.com
+    username: email_chenzhijun@163.com
+    password: chenzhijun1995
+
+springio:
+  website:
+   index: https://spring.io
+   blog: ${springio.website.index}/blog
+  weekly: This Week in Spring
+# 每周二下午20点
+  time: "0 0 20 ? * 2"
+
+email:
+  sender: email_chenzhijun@163.com
+  receiver: email_chenzhijun@163.com,522858454@qq.com
+
+
