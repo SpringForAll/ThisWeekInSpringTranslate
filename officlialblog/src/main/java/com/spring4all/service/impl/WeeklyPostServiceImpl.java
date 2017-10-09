@@ -6,6 +6,8 @@ import com.spring4all.factory.AbstractTranslatorFactory;
 import com.spring4all.factory.TranslatorFactory;
 import com.spring4all.service.WeeklyPostService;
 import com.spring4all.util.MyArrayList;
+import com.spring4all.util.QrCodeUtil;
+import com.spring4all.util.UploadImageUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -79,6 +81,8 @@ public class WeeklyPostServiceImpl implements WeeklyPostService {
                                     .append("</br></br>")
                                     .toString()
                     );
+                    String url=el.attr("href");
+                    addImage( hrefList,url);
                 }
                 hrefList.add("</br>");
             }
@@ -89,6 +93,9 @@ public class WeeklyPostServiceImpl implements WeeklyPostService {
                 hrefList.add(factory.getTranslator(TranslatorNameEnum.GOOGLE).trans(LanguageEnum.EN, LanguageEnum.ZH, allLiHref.get(i).text()) + "</br></br>");
                 for (Element el : allLiHref.get(i).select("a")) {
                     hrefList.add(el.attr("href") + "</br></br>");
+                    String url=el.attr("href");
+                    addImage( hrefList,url);
+
                 }
             }
 
@@ -99,6 +106,12 @@ public class WeeklyPostServiceImpl implements WeeklyPostService {
             logger.error("errorMessage:{}", e);
         }
         return hrefList.toString();
+    }
+
+    //添加图片
+    public void addImage(MyArrayList hrefList,String url){
+        String returnUrl= UploadImageUtil.upLoad(QrCodeUtil.createCode(url),url.substring(0,13));
+        hrefList.add("<img src='"+returnUrl+"' style='margin-left:500px;'><br/><br/>");
     }
 
 }

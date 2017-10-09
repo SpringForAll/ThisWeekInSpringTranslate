@@ -7,7 +7,6 @@
     <groupId>com.spring4all</groupId>
     <artifactId>officialblog</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,6 +51,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -59,17 +64,13 @@
             <version>1.10.2</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.lsj</groupId>
             <artifactId>trans</artifactId>
             <version>1.0</version>
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${basedir}/src/main/resources/lib/util_trans.jar</systemPath>-->
-            <!--这个么？不是，这是后来加上的，是我左边引入的，手动-->
-           <!--这个有问题的 这个是引入本地jar包的不是在maven私服的
-           如果你非得要打包本地maven仓库的话 我发你的你可以用下 -->
-
-        </dependency>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/resources/lib/util_trans.jar</systemPath>
+        </dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -85,27 +86,6 @@
             <artifactId>httpmime</artifactId>
         </dependency>
 
-<<<<<<< HEAD
-    </dependencies>
-  <build>
-      <plugins>
-          <plugin>
-              <groupId>org.springframework.boot</groupId>
-              <artifactId>spring-boot-maven-plugin</artifactId>
-              <version>1.5.3.RELEASE</version>
-              <executions>
-                  <execution>
-                      <goals>
-                          <goal>repackage</goal>
-                      </goals>
-                  </execution>
-              </executions>
-          </plugin>
-
-      </plugins>
-  </build>
-
-=======
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -114,18 +94,52 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
->>>>>>> 9cce10a2be4663790467af24ba9526da1e063b19
+        <!--二维码图片文件生成库-->
+        <!-- https://mvnrepository.com/artifact/net.glxn.qrgen/javase -->
+        <dependency>
+            <groupId>net.glxn.qrgen</groupId>
+            <artifactId>javase</artifactId>
+            <version>2.0</version>
+        </dependency>
 
     </dependencies>
+
+    <!--<repositories>-->
+    <!--<repository>-->
+    <!--<id>jitpack.io</id>-->
+    <!--<url>https://jitpack.io</url>-->
+    <!--</repository>-->
+    <!--</repositories>-->
+
     <build>
         <plugins>
             <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.spring4all.App</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
