@@ -7,6 +7,7 @@
     <groupId>com.spring4all</groupId>
     <artifactId>officialblog</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -63,8 +64,8 @@
             <groupId>com.lsj</groupId>
             <artifactId>trans</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/lib/util_trans.jar</systemPath>
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${basedir}/src/main/resources/lib/util_trans.jar</systemPath>-->
             <!--这个么？不是，这是后来加上的，是我左边引入的，手动-->
            <!--这个有问题的 这个是引入本地jar包的不是在maven私服的
            如果你非得要打包本地maven仓库的话 我发你的你可以用下 -->
