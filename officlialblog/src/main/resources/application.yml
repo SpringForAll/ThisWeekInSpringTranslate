@@ -13,6 +13,7 @@ springio:
    index: https://spring.io
    blog: ${springio.website.index}/blog
   weekly: This Week in Spring
+  titlematch: .*(\d{4}/\d{1,2}/\d{1,2}).*
 # 每周二下午20点
   time: "0 0 20 ? * 2"
 
