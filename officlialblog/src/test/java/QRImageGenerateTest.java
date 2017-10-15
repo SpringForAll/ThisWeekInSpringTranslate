@@ -2,6 +2,8 @@ import net.glxn.qrgen.core.image.ImageType;
 import net.glxn.qrgen.javase.QRCode;
 
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 测试生成二维码图片
@@ -27,11 +29,10 @@ public class QRImageGenerateTest {
             out.flush();
             out.close();
 
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

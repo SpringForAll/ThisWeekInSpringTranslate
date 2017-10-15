@@ -18,8 +18,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Service
 public class WeeklyPostServiceImpl implements WeeklyPostService {
+
     private static final Logger logger = LoggerFactory.getLogger(WeeklyPostServiceImpl.class);
 
     @Value("${springio.website.index}")
@@ -31,10 +39,13 @@ public class WeeklyPostServiceImpl implements WeeklyPostService {
     @Value("${springio.weekly}")
     private String MATCH_RULE;
 
+    @Value("${springio.titlematch}")
+    private String MATCH_PATH;
+
     @Override
     public String crawlWeeklyPost() {
         MyArrayList hrefList = new MyArrayList();
-
+        String linkHref;
         try {
 
             AbstractTranslatorFactory factory = new TranslatorFactory();//完成翻译工厂类
@@ -61,7 +72,8 @@ public class WeeklyPostServiceImpl implements WeeklyPostService {
                 return "解析最新的文章标题链接地址为空，页面结构可能已经变化！";
             }
 
-            String linkHref = SPRING_URL + targetLink;
+            linkHref = SPRING_URL + targetLink;
+
             Document latestBlog = Jsoup.connect(linkHref).get();
             Elements allPHref = latestBlog.select("div.blog--post").select("p");
             Elements allLiHref = latestBlog.select("div.blog--post").select("ul").select("li");
@@ -81,8 +93,8 @@ public class WeeklyPostServiceImpl implements WeeklyPostService {
                                     .append("</br></br>")
                                     .toString()
                     );
-                    String url=el.attr("href");
-                    addImage( hrefList,url);
+                    String url = el.attr("href");
+                    addImage(hrefList, url);
                 }
                 hrefList.add("</br>");
             }
@@ -93,25 +105,35 @@ public class WeeklyPostServiceImpl implements WeeklyPostService {
                 hrefList.add(factory.getTranslator(TranslatorNameEnum.GOOGLE).trans(LanguageEnum.EN, LanguageEnum.ZH, allLiHref.get(i).text()) + "</br></br>");
                 for (Element el : allLiHref.get(i).select("a")) {
                     hrefList.add(el.attr("href") + "</br></br>");
-                    String url=el.attr("href");
-                    addImage( hrefList,url);
+                    String url = el.attr("href");
+                    addImage(hrefList, url);
 
                 }
             }
-
-            return hrefList.toString();
-
+            saveContent(hrefList, linkHref);
         } catch (Exception e) {
-//            System.err.println("获取超时");
             logger.error("errorMessage:{}", e);
+        } finally {
+            return hrefList.toString();
         }
-        return hrefList.toString();
+    }
+
+    private void saveContent(MyArrayList hrefList, String linkHref) throws IOException {
+        Pattern p = Pattern.compile(MATCH_PATH);
+        Matcher m = p.matcher(linkHref);
+        boolean matched = m.matches();
+        if (matched) {
+            String fileName = m.group(1).replaceAll("\\/","") + ".md";
+            String targetPath = new File(System.getProperty("user.dir")) + "/translated/" + fileName;
+            // 对当前翻译内容进行归档保存
+            Files.write(Paths.get(targetPath), hrefList.toString().getBytes());
+        }
     }
 
     //添加图片
-    public void addImage(MyArrayList hrefList,String url){
-        String returnUrl= UploadImageUtil.upLoad(QrCodeUtil.createCode(url),url.substring(0,13));
-        hrefList.add("<img src='"+returnUrl+"' style='margin-left:500px;'><br/><br/>");
+    public void addImage(MyArrayList hrefList, String url) {
+        String returnUrl = UploadImageUtil.upLoad(QrCodeUtil.createCode(url), url.substring(0, 13));
+        hrefList.add("<img src='" + returnUrl + "' style='margin-left:500px;'><br/><br/>");
     }
 
 }
